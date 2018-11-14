@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soa.order.persistence.OrderMapper">
+
+
+	<select id="findOrderByUserId" resultType="com.soa.order.domain.Order">
+		SELECT
+		`id`,
+		`product_id` AS productId,
+		`price`,
+		`user_id` AS userId,
+		`trade_id` AS tradeId,
+		`trade_status` tradeStatus,
+		`deleted`,
+		`create_time` AS createTime,
+		`update_time` AS updateTime
+		FROM `order` where user_id=#{userId}
+	</select>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `order`
+		(
+		`product_id`,
+		`price`,
+		`user_id`,
+		`trade_id`
+		)
+		VALUES (
+		#{productId},
+		#{price},
+		#{userId},
+		#{tradeId});
+	</insert>
+
+
+
+
+	<update id="updateOrderByTrade" parameterType="com.soa.order.domain.Order">
+		UPDATE `order`
+		SET
+		`trade_id` = #{tradeId},
+		`trade_status` = 1
+		WHERE `id` = #{id};
+	</update>
+</mapper>

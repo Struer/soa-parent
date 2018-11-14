@@ -1,0 +1,11 @@
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:agan="http://study.163.com/u/ykt1461577211836/schema/people"  
+    xsi:schemaLocation="  
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd  
+http://study.163.com/u/ykt1461577211836/schema/people http://study.163.com/u/ykt1461577211836/schema/people.xsd">  
+
+
+
+    <agan:people id="agan" name="阿甘" age="18"/>  
+</beans> 

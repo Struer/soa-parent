@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd  
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+
+	<description>soa-jdbc</description>
+
+
+	<jdbc:initialize-database data-source="dataSource" enabled="false" ignore-failures="NONE">
+		<jdbc:script location="classpath:conf/schema/schema.sql" encoding="UTF-8" />
+	</jdbc:initialize-database>
+
+
+	<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="url" value="${jdbc.mysql.soa.url}" />
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="username" value="${jdbc.mysql.soa.username}" />
+		<property name="password" value="${jdbc.mysql.soa.password}" />
+		<property name="maxIdle" value="${jdbc.maxIdle}" />
+		<property name="minIdle" value="${jdbc.minIdle}" />
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" />
+		<property name="poolPreparedStatements" value="${jdbc.poolPreparedStatements}" />
+		<property name="maxOpenPreparedStatements" value="${jdbc.maxOpenPreparedStatements}" />
+		<property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}" />
+		<property name="testOnBorrow" value="${jdbc.testOnBorrow}" />
+		<property name="testOnReturn" value="${jdbc.testOnReturn}" />
+		<property name="testWhileIdle" value="${jdbc.testWhileIdle}" />
+		<property name="validationQuery" value="${jdbc.validationQuery}" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath*:mybatis/com/soa/**/*.xml" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.soa.**.persistence" />
+
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+</beans>

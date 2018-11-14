@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soa.trade.persistence.TradeMapper">
+
+
+
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `trade`
+            (
+             `order_id`,
+             `user_id`,
+             `price`,
+             `pay_status`,
+             `pay_type`,
+             `gateway_pay_num`,
+             `gateway_pay_time`,
+             `gateway_pay_price`)
+		VALUES (
+		        #{orderId},
+		        #{userId},
+		        #{price},
+		        #{payStatus},
+		        #{payType},
+		        #{gatewayPayNum},
+		        #{gatewayPayTime},
+		        #{gatewayPayPrice});
+	</insert>
+
+
+</mapper>

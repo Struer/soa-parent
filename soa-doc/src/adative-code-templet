@@ -1,0 +1,22 @@
+package <扩展点接口所在包>;
+ 
+public class <扩展点接口名>$Adpative implements <扩展点接口> {
+    public <有@Adaptive注解的接口方法>(<方法参数>) {
+        if(是否有URL类型方法参数?) 使用该URL参数
+        else if(是否有方法类型上有URL属性) 使用该URL属性
+        # <else 在加载扩展点生成自适应扩展点类时抛异常，即加载扩展点失败！>
+         
+        if(获取的URL == null) {
+            throw new IllegalArgumentException("url == null");
+        }
+ 
+              根据@Adaptive注解上声明的Key的顺序，从URL获致Value，作为实际扩展点名。
+               如URL没有Value，则使用缺省扩展点实现。如没有扩展点， throw new IllegalStateException("Fail to get extension");
+ 
+               在扩展点实现调用该方法，并返回结果。
+    }
+ 
+    public <有@Adaptive注解的接口方法>(<方法参数>) {
+        throw new UnsupportedOperationException("is not adaptive method!");
+    }
+}
