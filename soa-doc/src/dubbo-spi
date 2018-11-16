@@ -1,39 +1,36 @@
-ÎªÊ²Ã´ÒªÉè¼Æadaptive£¿×¢½âÔÚÀàÉÏºÍ×¢½âÔÚ·½·¨ÉÏµÄÇø±ğ£¿
-adaptiveÉè¼ÆµÄÄ¿µÄÊÇÎªÁËÊ¶±ğ¹Ì¶¨ÒÑÖªÀàºÍÀ©Õ¹Î´ÖªÀà¡£
-1.×¢½âÔÚÀàÉÏ£º´ú±íÈË¹¤ÊµÏÖ£¬ÊµÏÖÒ»¸ö×°ÊÎÀà£¨Éè¼ÆÄ£Ê½ÖĞµÄ×°ÊÎÄ£Ê½£©£¬ËüÖ÷Òª×÷ÓÃÓÚ¹Ì¶¨ÒÑÖªÀà£¬
-  Ä¿Ç°Õû¸öÏµÍ³Ö»ÓĞ2¸ö£¬AdaptiveCompiler¡¢AdaptiveExtensionFactory¡£
-  a.ÎªÊ²Ã´AdaptiveCompilerÕâ¸öÀàÊÇ¹Ì¶¨ÒÑÖªµÄ£¿ÒòÎªÕû¸ö¿ò¼Ü½öÖ§³ÖJavassistºÍJdkCompiler¡£
-  b.ÎªÊ²Ã´AdaptiveExtensionFactoryÕâ¸öÀàÊÇ¹Ì¶¨ÒÑÖªµÄ£¿ÒòÎªÕû¸ö¿ò¼Ü½öÖ§³Ö2¸öobjFactory,Ò»¸öÊÇspi,ÁíÒ»¸öÊÇspring
-2.×¢½âÔÚ·½·¨ÉÏ£º´ú±í×Ô¶¯Éú³ÉºÍ±àÒëÒ»¸ö¶¯Ì¬µÄAdpativeÀà£¬ËüÖ÷ÒªÊÇÓÃÓÚSPI£¬ÒòÎªspiµÄÀàÊÇ²»¹Ì¶¨¡¢Î´ÖªµÄÀ©Õ¹Àà£¬ËùÒÔÉè¼ÆÁË¶¯Ì¬$AdaptiveÀà.
-ÀıÈç ProtocolµÄspiÀàÓĞ injvm dubbo registry filter listenerµÈµÈ ºÜ¶àÀ©Õ¹Î´ÖªÀà£¬
-ËüÉè¼ÆÁËProtocol$AdaptiveµÄÀà£¬Í¨¹ıExtensionLoader.getExtensionLoader(Protocol.class).getExtension(spiÀà);À´ÌáÈ¡¶ÔÏó
+ä¸ºä»€ä¹ˆè¦è®¾è®¡adaptiveï¼Ÿæ³¨è§£åœ¨ç±»ä¸Šå’Œæ³¨è§£åœ¨æ–¹æ³•ä¸Šçš„åŒºåˆ«ï¼Ÿ
+adaptiveè®¾è®¡çš„ç›®çš„æ˜¯ä¸ºäº†è¯†åˆ«å›ºå®šå·²çŸ¥ç±»å’Œæ‰©å±•æœªçŸ¥ç±»ã€‚
+1.æ³¨è§£åœ¨ç±»ä¸Šï¼šä»£è¡¨äººå·¥å®ç°ï¼Œå®ç°ä¸€ä¸ªè£…é¥°ç±»ï¼ˆè®¾è®¡æ¨¡å¼ä¸­çš„è£…é¥°æ¨¡å¼ï¼‰ï¼Œå®ƒä¸»è¦ä½œç”¨äºå›ºå®šå·²çŸ¥ç±»ï¼Œ
+  ç›®å‰æ•´ä¸ªç³»ç»Ÿåªæœ‰2ä¸ªï¼ŒAdaptiveCompilerã€AdaptiveExtensionFactoryã€‚
+  a.ä¸ºä»€ä¹ˆAdaptiveCompilerè¿™ä¸ªç±»æ˜¯å›ºå®šå·²çŸ¥çš„ï¼Ÿå› ä¸ºæ•´ä¸ªæ¡†æ¶ä»…æ”¯æŒJavassistå’ŒJdkCompilerã€‚
+  b.ä¸ºä»€ä¹ˆAdaptiveExtensionFactoryè¿™ä¸ªç±»æ˜¯å›ºå®šå·²çŸ¥çš„ï¼Ÿå› ä¸ºæ•´ä¸ªæ¡†æ¶ä»…æ”¯æŒ2ä¸ªobjFactory,ä¸€ä¸ªæ˜¯spi,å¦ä¸€ä¸ªæ˜¯spring
+2.æ³¨è§£åœ¨æ–¹æ³•ä¸Šï¼šä»£è¡¨è‡ªåŠ¨ç”Ÿæˆå’Œç¼–è¯‘ä¸€ä¸ªåŠ¨æ€çš„Adpativeç±»ï¼Œå®ƒä¸»è¦æ˜¯ç”¨äºSPIï¼Œå› ä¸ºspiçš„ç±»æ˜¯ä¸å›ºå®šã€æœªçŸ¥çš„æ‰©å±•ç±»ï¼Œæ‰€ä»¥è®¾è®¡äº†åŠ¨æ€$Adaptiveç±».
+ä¾‹å¦‚ Protocolçš„spiç±»æœ‰ injvm dubbo registry filter listenerç­‰ç­‰ å¾ˆå¤šæ‰©å±•æœªçŸ¥ç±»ï¼Œ
+å®ƒè®¾è®¡äº†Protocol$Adaptiveçš„ç±»ï¼Œé€šè¿‡ExtensionLoader.getExtensionLoader(Protocol.class).getExtension(spiç±»);æ¥æå–å¯¹è±¡
 
 
-ÎªÊ²Ã´dubboÒª×Ô¼ºÉè¼ÆÒ»Ì×SPI£¿
-ÕâÊÇÔ­Ê¼JDK spiµÄ´úÂë
+ä¸ºä»€ä¹ˆdubboè¦è‡ªå·±è®¾è®¡ä¸€å¥—SPIï¼Ÿ
+è¿™æ˜¯åŸå§‹JDK spiçš„ä»£ç 
 	ServiceLoader<Command> serviceLoader=ServiceLoader.load(Command.class); 
   for(Command command:serviceLoader){  
       command.execute();  
   }  
-dubboÔÚÔ­À´µÄ»ù´¡ÉÏÉè¼ÆÁËÒÔÏÂ¹¦ÄÜ
-1.Ô­Ê¼JDK spi²»Ö§³Ö»º´æ£»dubboÉè¼ÆÁË»º´æ¶ÔÏó£ºspiµÄkeyÓëvalue »º´æÔÚ cachedInstances¶ÔÏóÀïÃæ£¬ËüÊÇÒ»¸öConcurrentMap
-2.Ô­Ê¼JDK spi²»Ö§³ÖÄ¬ÈÏÖµ£¬dubboÉè¼ÆÄ¬ÈÏÖµ£º@SPI("dubbo") ´ú±íÄ¬ÈÏµÄspi¶ÔÏó£¬ÀıÈçProtocolµÄ@SPI("dubbo")¾ÍÊÇ DubboProtocol£¬
-  Í¨¹ı ExtensionLoader.getExtensionLoader(Protocol.class).getDefaultExtension()ÄÇÄ¬ÈÏ¶ÔÏó
-3.jdkÒªÓÃforÑ­»·ÅĞ¶Ï¶ÔÏó£¬dubboÉè¼ÆgetExtensionÁé»î·½±ã£¬¶¯Ì¬»ñÈ¡spi¶ÔÏó£¬
-  ÀıÈç ExtensionLoader.getExtensionLoader(Protocol.class).getExtension(spiµÄkey)À´ÌáÈ¡¶ÔÏó
-4.Ô­Ê¼JDK spi²»Ö§³Ö AOP¹¦ÄÜ£¬dubboÉè¼ÆÔö¼ÓÁËAOP¹¦ÄÜ,ÔÚcachedWrapperClasses£¬ÔÚÔ­Ê¼spiÀà£¬°ü×°ÁËXxxxFilterWrapper XxxxListenerWrapper
-5.Ô­Ê¼JDK spi²»Ö§³Ö IOC¹¦ÄÜ£¬dubboÉè¼ÆÔö¼ÓÁËIOC,Í¨¹ı¹¹Ôìº¯Êı×¢Èë,´úÂëÎª£ºwrapperClass.getConstructor(type).newInstance(instance),
+dubboåœ¨åŸæ¥çš„åŸºç¡€ä¸Šè®¾è®¡äº†ä»¥ä¸‹åŠŸèƒ½
+1.åŸå§‹JDK spiä¸æ”¯æŒç¼“å­˜ï¼›dubboè®¾è®¡äº†ç¼“å­˜å¯¹è±¡ï¼šspiçš„keyä¸value ç¼“å­˜åœ¨ cachedInstanceså¯¹è±¡é‡Œé¢ï¼Œå®ƒæ˜¯ä¸€ä¸ªConcurrentMap
+2.åŸå§‹JDK spiä¸æ”¯æŒé»˜è®¤å€¼ï¼Œdubboè®¾è®¡é»˜è®¤å€¼ï¼š@SPI("dubbo") ä»£è¡¨é»˜è®¤çš„spiå¯¹è±¡ï¼Œä¾‹å¦‚Protocolçš„@SPI("dubbo")å°±æ˜¯ DubboProtocolï¼Œ
+  é€šè¿‡ ExtensionLoader.getExtensionLoader(Protocol.class).getDefaultExtension()é‚£é»˜è®¤å¯¹è±¡
+3.jdkè¦ç”¨forå¾ªç¯åˆ¤æ–­å¯¹è±¡ï¼Œdubboè®¾è®¡getExtensionçµæ´»æ–¹ä¾¿ï¼ŒåŠ¨æ€è·å–spiå¯¹è±¡ï¼Œ
+  ä¾‹å¦‚ ExtensionLoader.getExtensionLoader(Protocol.class).getExtension(spiçš„key)æ¥æå–å¯¹è±¡
+4.åŸå§‹JDK spiä¸æ”¯æŒ AOPåŠŸèƒ½ï¼Œdubboè®¾è®¡å¢åŠ äº†AOPåŠŸèƒ½,åœ¨cachedWrapperClassesï¼Œåœ¨åŸå§‹spiç±»ï¼ŒåŒ…è£…äº†XxxxFilterWrapper XxxxListenerWrapper
+5.åŸå§‹JDK spiä¸æ”¯æŒ IOCåŠŸèƒ½ï¼Œdubboè®¾è®¡å¢åŠ äº†IOC,é€šè¿‡æ„é€ å‡½æ•°æ³¨å…¥,ä»£ç ä¸ºï¼šwrapperClass.getConstructor(type).newInstance(instance),
 
-
-
-
-
-dubbo spi µÄÄ¿µÄ£º»ñÈ¡Ò»¸öÖ¸¶¨ÊµÏÖÀàµÄ¶ÔÏó¡£
-Í¾¾¶£ºExtensionLoader.getExtension(String name)
-ÊµÏÖÂ·¾¶£º
-getExtensionLoader(Class<T> type) ¾ÍÊÇÎª¸Ã½Ó¿Únew Ò»¸öExtensionLoader£¬È»ºó»º´æÆğÀ´¡£
-getAdaptiveExtension() »ñÈ¡Ò»¸öÀ©Õ¹Àà£¬Èç¹û@Adaptive×¢½âÔÚÀàÉÏ¾ÍÊÇÒ»¸ö×°ÊÎÀà£»Èç¹û×¢½âÔÚ·½·¨ÉÏ¾ÍÊÇÒ»¸ö¶¯Ì¬´úÀíÀà£¬ÀıÈçProtocol$Adaptive¶ÔÏó¡£
-getExtension(String name) »ñÈ¡Ò»¸öÖ¸¶¨¶ÔÏó¡£
+------------------------------------------------
+dubbo spi çš„ç›®çš„ï¼šè·å–ä¸€ä¸ªæŒ‡å®šå®ç°ç±»çš„å¯¹è±¡ã€‚
+é€”å¾„ï¼šExtensionLoader.getExtension(String name)
+å®ç°è·¯å¾„ï¼š
+getExtensionLoader(Class<T> type) å°±æ˜¯ä¸ºè¯¥æ¥å£new ä¸€ä¸ªExtensionLoaderï¼Œç„¶åç¼“å­˜èµ·æ¥ã€‚
+getAdaptiveExtension() è·å–ä¸€ä¸ªæ‰©å±•ç±»ï¼Œå¦‚æœ@Adaptiveæ³¨è§£åœ¨ç±»ä¸Šå°±æ˜¯ä¸€ä¸ªè£…é¥°ç±»ï¼›å¦‚æœæ³¨è§£åœ¨æ–¹æ³•ä¸Šå°±æ˜¯ä¸€ä¸ªåŠ¨æ€ä»£ç†ç±»ï¼Œä¾‹å¦‚Protocol$Adaptiveå¯¹è±¡ã€‚
+getExtension(String name) è·å–ä¸€ä¸ªæŒ‡å®šå¯¹è±¡ã€‚
 
 
 -----------------------ExtensionLoader.getExtensionLoader(Class<T> type)
@@ -44,54 +41,53 @@ ExtensionLoader.getExtensionLoader(Container.class)
        -->this.type = type;
        -->objectFactory =null;
        
-Ö´ĞĞÒÔÉÏ´úÂëÍê³ÉÁË2¸öÊôĞÔµÄ³õÊ¼»¯
-1.Ã¿¸öÒ»¸öExtensionLoader¶¼°üº¬ÁË2¸öÖµ type ºÍ objectFactory
-  Class<?> type£»//¹¹ÔìÆ÷  ³õÊ¼»¯Ê±ÒªµÃµ½µÄ½Ó¿ÚÃû
-  ExtensionFactory objectFactory//¹¹ÔìÆ÷  ³õÊ¼»¯Ê± AdaptiveExtensionFactory[SpiExtensionFactory,SpringExtensionFactory]
-2.new Ò»¸öExtensionLoader ´æ´¢ÔÚConcurrentMap<Class<?>, ExtensionLoader<?>> EXTENSION_LOADERS
+æ‰§è¡Œä»¥ä¸Šä»£ç å®Œæˆäº†2ä¸ªå±æ€§çš„åˆå§‹åŒ–
+1.æ¯ä¸ªä¸€ä¸ªExtensionLoaderéƒ½åŒ…å«äº†2ä¸ªå€¼ type å’Œ objectFactory
+  Class<?> typeï¼›//æ„é€ å™¨  åˆå§‹åŒ–æ—¶è¦å¾—åˆ°çš„æ¥å£å
+  ExtensionFactory objectFactory//æ„é€ å™¨  åˆå§‹åŒ–æ—¶ AdaptiveExtensionFactory[SpiExtensionFactory,SpringExtensionFactory]
+2.new ä¸€ä¸ªExtensionLoader å­˜å‚¨åœ¨ConcurrentMap<Class<?>, ExtensionLoader<?>> EXTENSION_LOADERS
 
-¹ØÓÚÕâ¸öobjectFactoryµÄÒ»Ğ©Ï¸½Ú£º
-1.objectFactory¾ÍÊÇExtensionFactory£¬ËüÒ²ÊÇÍ¨¹ıExtensionLoader.getExtensionLoader(ExtensionFactory.class)À´ÊµÏÖµÄ£¬µ«ÊÇËüµÄobjectFactory=null
-2.objectFactory×÷ÓÃ£¬Ëü¾ÍÊÇÎªdubboµÄIOCÌá¹©ËùÓĞ¶ÔÏó¡£
+å…³äºè¿™ä¸ªobjectFactoryçš„ä¸€äº›ç»†èŠ‚ï¼š
+1.objectFactoryå°±æ˜¯ExtensionFactoryï¼Œå®ƒä¹Ÿæ˜¯é€šè¿‡ExtensionLoader.getExtensionLoader(ExtensionFactory.class)æ¥å®ç°çš„ï¼Œä½†æ˜¯å®ƒçš„objectFactory=null
+2.objectFactoryä½œç”¨ï¼Œå®ƒå°±æ˜¯ä¸ºdubboçš„IOCæä¾›æ‰€æœ‰å¯¹è±¡ã€‚
        
 
 -----------------------getAdaptiveExtension()
 
-
--->getAdaptiveExtension()//ÎªcachedAdaptiveInstance¸³Öµ
+-->getAdaptiveExtension()//ä¸ºcachedAdaptiveInstanceèµ‹å€¼
   -->createAdaptiveExtension()
     -->getAdaptiveExtensionClass()
-      -->getExtensionClasses()//ÎªcachedClasses ¸³Öµ
+      -->getExtensionClasses()//ä¸ºcachedClasses èµ‹å€¼
         -->loadExtensionClasses()
           -->loadFile
-      -->createAdaptiveExtensionClass()//×Ô¶¯Éú³ÉºÍ±àÒëÒ»¸ö¶¯Ì¬µÄadpativeÀà£¬Õâ¸öÀàÊÇÒ»¸ö´úÀíÀà
+      -->createAdaptiveExtensionClass()//è‡ªåŠ¨ç”Ÿæˆå’Œç¼–è¯‘ä¸€ä¸ªåŠ¨æ€çš„adpativeç±»ï¼Œè¿™ä¸ªç±»æ˜¯ä¸€ä¸ªä»£ç†ç±»
         -->ExtensionLoader.getExtensionLoader(com.alibaba.dubbo.common.compiler.Compiler.class).getAdaptiveExtension()
         -->compiler.compile(code, classLoader)
-    -->injectExtension()//×÷ÓÃ£º½øÈëIOCµÄ·´×ª¿ØÖÆÄ£Ê½£¬ÊµÏÖÁË¶¯Ì¬Èë×¢
+    -->injectExtension()//ä½œç”¨ï¼šè¿›å…¥IOCçš„åè½¬æ§åˆ¶æ¨¡å¼ï¼Œå®ç°äº†åŠ¨æ€å…¥æ³¨
         
           
-¹ØÓÚloadfileµÄÒ»Ğ©Ï¸½Ú
-Ä¿µÄ£ºÍ¨¹ı°ÑÅäÖÃÎÄ¼şMETA-INF/dubbo/internal/com.alibaba.dubbo.rpc.ProtocolµÄÄÚÈİ£¬´æ´¢ÔÚ»º´æ±äÁ¿ÀïÃæ¡£
-cachedAdaptiveClass//Èç¹ûÕâ¸öclassº¬ÓĞadative×¢½â¾Í¸³Öµ£¬ÀıÈçExtensionFactory£¬¶øÀıÈçProtocolÔÚÕâ¸ö»·½ÚÊÇÃ»ÓĞµÄ¡£
-cachedWrapperClasses//Ö»ÓĞµ±¸ÃclassÎŞadative×¢½â£¬²¢ÇÒ¹¹Ôìº¯Êı°üº¬Ä¿±ê½Ó¿Ú£¨type£©ÀàĞÍ£¬
-                                                                 ÀıÈçprotocolÀïÃæµÄspi¾ÍÖ»ÓĞProtocolFilterWrapperºÍProtocolListenerWrapperÄÜÃüÖĞ
-cachedActivates//Ê£ÏÂµÄÀà£¬°üº¬Activate×¢½â
-cachedNames//Ê£ÏÂµÄÀà¾Í´æ´¢ÔÚÕâÀï¡£
+å…³äºloadfileçš„ä¸€äº›ç»†èŠ‚
+ç›®çš„ï¼šé€šè¿‡æŠŠé…ç½®æ–‡ä»¶META-INF/dubbo/internal/com.alibaba.dubbo.rpc.Protocolçš„å†…å®¹ï¼Œå­˜å‚¨åœ¨ç¼“å­˜å˜é‡é‡Œé¢ã€‚
+cachedAdaptiveClass//å¦‚æœè¿™ä¸ªclasså«æœ‰adativeæ³¨è§£å°±èµ‹å€¼ï¼Œä¾‹å¦‚ExtensionFactoryï¼Œè€Œä¾‹å¦‚Protocolåœ¨è¿™ä¸ªç¯èŠ‚æ˜¯æ²¡æœ‰çš„ã€‚
+cachedWrapperClasses//åªæœ‰å½“è¯¥classæ— adativeæ³¨è§£ï¼Œå¹¶ä¸”æ„é€ å‡½æ•°åŒ…å«ç›®æ ‡æ¥å£ï¼ˆtypeï¼‰ç±»å‹ï¼Œ
+                                                                 ä¾‹å¦‚protocolé‡Œé¢çš„spiå°±åªæœ‰ProtocolFilterWrapperå’ŒProtocolListenerWrapperèƒ½å‘½ä¸­
+cachedActivates//å‰©ä¸‹çš„ç±»ï¼ŒåŒ…å«Activateæ³¨è§£
+cachedNames//å‰©ä¸‹çš„ç±»å°±å­˜å‚¨åœ¨è¿™é‡Œã€‚
 
 
 
 -----------------------getExtension(String name)
-getExtension(String name) //Ö¸¶¨¶ÔÏó»º´æÔÚcachedInstances£»get³öÀ´µÄ¶ÔÏówrapper¶ÔÏó£¬ÀıÈçprotocol¾ÍÊÇProtocolFilterWrapperºÍProtocolListenerWrapperÆäÖĞÒ»¸ö¡£
+getExtension(String name) //æŒ‡å®šå¯¹è±¡ç¼“å­˜åœ¨cachedInstancesï¼›getå‡ºæ¥çš„å¯¹è±¡wrapperå¯¹è±¡ï¼Œä¾‹å¦‚protocolå°±æ˜¯ProtocolFilterWrapperå’ŒProtocolListenerWrapperå…¶ä¸­ä¸€ä¸ªã€‚
   -->createExtension(String name)
     -->getExtensionClasses()
-    -->injectExtension(T instance)//dubboµÄIOC·´×ª¿ØÖÆ£¬¾ÍÊÇ´ÓspiºÍspringÀïÃæÌáÈ¡¶ÔÏó¸³Öµ¡£
+    -->injectExtension(T instance)//dubboçš„IOCåè½¬æ§åˆ¶ï¼Œå°±æ˜¯ä»spiå’Œspringé‡Œé¢æå–å¯¹è±¡èµ‹å€¼ã€‚
       -->objectFactory.getExtension(pt, property)
         -->SpiExtensionFactory.getExtension(type, name)
           -->ExtensionLoader.getExtensionLoader(type)
           -->loader.getAdaptiveExtension()
         -->SpringExtensionFactory.getExtension(type, name)
           -->context.getBean(name)
-    -->injectExtension((T) wrapperClass.getConstructor(type).newInstance(instance))//AOPµÄ¼òµ¥Éè¼Æ
+    -->injectExtension((T) wrapperClass.getConstructor(type).newInstance(instance))//AOPçš„ç®€å•è®¾è®¡
     
 
     
