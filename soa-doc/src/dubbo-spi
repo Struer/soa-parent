@@ -1,3 +1,24 @@
+---------------------------------
+dubbo配置文件中tag的定义
+public class DubboNamespaceHandler extends NamespaceHandlerSupport {
+    static {
+        Version.checkDuplicate(DubboNamespaceHandler.class);
+    }
+    public void init() {
+        registerBeanDefinitionParser("application", new DubboBeanDefinitionParser(ApplicationConfig.class, true));
+        registerBeanDefinitionParser("module", new DubboBeanDefinitionParser(ModuleConfig.class, true));
+        registerBeanDefinitionParser("registry", new DubboBeanDefinitionParser(RegistryConfig.class, true));
+        registerBeanDefinitionParser("monitor", new DubboBeanDefinitionParser(MonitorConfig.class, true));
+        registerBeanDefinitionParser("provider", new DubboBeanDefinitionParser(ProviderConfig.class, true));
+        registerBeanDefinitionParser("consumer", new DubboBeanDefinitionParser(ConsumerConfig.class, true));
+        registerBeanDefinitionParser("protocol", new DubboBeanDefinitionParser(ProtocolConfig.class, true));
+        registerBeanDefinitionParser("service", new DubboBeanDefinitionParser(ServiceBean.class, true));
+        registerBeanDefinitionParser("reference", new DubboBeanDefinitionParser(ReferenceBean.class, false));
+        registerBeanDefinitionParser("annotation", new DubboBeanDefinitionParser(AnnotationBean.class, true));
+    }
+}
+---------------------------------------------
+
 为什么要设计adaptive？注解在类上和注解在方法上的区别？
 adaptive设计的目的是为了识别固定已知类和扩展未知类。
 1.注解在类上：代表人工实现，实现一个装饰类（设计模式中的装饰模式），它主要作用于固定已知类，
@@ -90,7 +111,7 @@ getExtension(String name) //指定对象缓存在cachedInstances；get出来的�
     -->injectExtension((T) wrapperClass.getConstructor(type).newInstance(instance))//AOP的简单设计
     
 
-    
+
     
           
           
