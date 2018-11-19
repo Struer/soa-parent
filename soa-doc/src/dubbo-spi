@@ -12,7 +12,7 @@ public class DubboNamespaceHandler extends NamespaceHandlerSupport {
         registerBeanDefinitionParser("provider", new DubboBeanDefinitionParser(ProviderConfig.class, true));
         registerBeanDefinitionParser("consumer", new DubboBeanDefinitionParser(ConsumerConfig.class, true));
         registerBeanDefinitionParser("protocol", new DubboBeanDefinitionParser(ProtocolConfig.class, true));
-        registerBeanDefinitionParser("service", new DubboBeanDefinitionParser(ServiceBean.class, true));
+        registerBeanDefinitionParser("service", new DubboBeanDefinitionParser(ServiceBean.class, true));  // ServiceBean继承了ServiceConfig
         registerBeanDefinitionParser("reference", new DubboBeanDefinitionParser(ReferenceBean.class, false));
         registerBeanDefinitionParser("annotation", new DubboBeanDefinitionParser(AnnotationBean.class, true));
     }
@@ -39,9 +39,10 @@ adaptive设计的目的是为了识别固定已知类和扩展未知类。
 dubbo在原来的基础上设计了以下功能
 1.原始JDK spi不支持缓存；dubbo设计了缓存对象：spi的key与value 缓存在 cachedInstances对象里面，它是一个ConcurrentMap
 2.原始JDK spi不支持默认值，dubbo设计默认值：@SPI("dubbo") 代表默认的spi对象，例如Protocol的@SPI("dubbo")就是 DubboProtocol，
-  通过 ExtensionLoader.getExtensionLoader(Protocol.class).getDefaultExtension()那默认对象
+  通过 ExtensionLoader.getExtensionLoader(Protocol.class).getDefaultExtension()拿默认对象
 3.jdk要用for循环判断对象，dubbo设计getExtension灵活方便，动态获取spi对象，
   例如 ExtensionLoader.getExtensionLoader(Protocol.class).getExtension(spi的key)来提取对象
+       ExtensionLoader.getExtensionLoader(Protocol.class).getAdaptiveExtension()  获取有adaptive注解的对象
 4.原始JDK spi不支持 AOP功能，dubbo设计增加了AOP功能,在cachedWrapperClasses，在原始spi类，包装了XxxxFilterWrapper XxxxListenerWrapper
 5.原始JDK spi不支持 IOC功能，dubbo设计增加了IOC,通过构造函数注入,代码为：wrapperClass.getConstructor(type).newInstance(instance),
 
