@@ -33,7 +33,7 @@ public class CompilerByJavassist {
 		enameField.setModifiers(Modifier.PRIVATE);
 		ctClass.addField(enameField);
 
-		// 其次添加熟悉privtae int eno
+		// 其次添加属性privtae int eno
 		CtField enoField = new CtField(pool.getCtClass("int"), "eno", ctClass);
 		enoField.setModifiers(Modifier.PRIVATE);
 		ctClass.addField(enoField);
