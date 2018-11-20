@@ -68,7 +68,7 @@ public class CompilerByJavassist {
 		ctMethod.setBody(buffer2.toString());
 		ctClass.addMethod(ctMethod);
 
-		//最好生成一个class
+		//最后生成一个class
 		Class<?> clazz = ctClass.toClass();
 		Object obj = clazz.newInstance();
 		//反射 执行方法
