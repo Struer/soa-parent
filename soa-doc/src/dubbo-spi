@@ -50,6 +50,7 @@ dubbo在原来的基础上设计了以下功能
 dubbo spi 的目的：获取一个指定实现类的对象。
 途径：ExtensionLoader.getExtension(String name)
 实现路径：
+代码: private static final Protocol protocol = ExtensionLoader.getExtensionLoader(Protocol.class).getAdaptiveExtension();
 getExtensionLoader(Class<T> type) 就是为该接口new 一个ExtensionLoader，然后缓存起来。
 getAdaptiveExtension() 获取一个扩展类，如果@Adaptive注解在类上就是一个装饰类；如果注解在方法上就是一个动态代理类，例如Protocol$Adaptive对象。
 getExtension(String name) 获取一个指定对象。
@@ -75,7 +76,7 @@ ExtensionLoader.getExtensionLoader(Container.class)
        
 
 -----------------------getAdaptiveExtension()
-
+获取一个扩展类，如果@Adaptive注解在类上就是一个装饰类；如果注解在方法上就是一个动态代理类，例如Protocol$Adaptive对象。
 -->getAdaptiveExtension()//为cachedAdaptiveInstance赋值
   -->createAdaptiveExtension()
     -->getAdaptiveExtensionClass()
