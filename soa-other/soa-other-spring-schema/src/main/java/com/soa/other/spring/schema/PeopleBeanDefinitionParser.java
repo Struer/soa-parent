@@ -5,8 +5,7 @@ import org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;
 import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
-public class PeopleBeanDefinitionParser extends
-		AbstractSingleBeanDefinitionParser {
+public class PeopleBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 	protected Class getBeanClass(Element element) {
 		return People.class;
 	}
