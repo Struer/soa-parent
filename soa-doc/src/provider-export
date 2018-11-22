@@ -1,4 +1,5 @@
 服务发布-原理
+发布服务的目的就是将接口注册到zk上去
 第一个发布的动作：暴露本地服务
 	Export dubbo service com.alibaba.dubbo.demo.DemoService to local registry, dubbo version: 2.0.0, current host: 127.0.0.1
 第二个发布动作：暴露远程服务
@@ -34,7 +35,7 @@ ServiceBean.onApplicationEvent
         -->doExportUrlsFor1Protocol(ProtocolConfig protocolConfig, List<URL> registryURLs) 
           //配置不是remote的情况下做本地暴露 (配置为remote，则表示只暴露远程服务)
           -->exportLocal(URL url)
-            -->proxyFactory.getInvoker(ref, (Class) interfaceClass, local)
+            -->proxyFactory.getInvoker(ref, (Class) interfaceClass, local)   生成代理类ProxyFactory$Adaptive 调用其getInvoker方法
               -->ExtensionLoader.getExtensionLoader(com.alibaba.dubbo.rpc.ProxyFactory.class).getExtension("javassist");
               -->extension.getInvoker(arg0, arg1, arg2)
                 -->StubProxyFactoryWrapper.getInvoker(T proxy, Class<T> type, URL url) 
@@ -71,12 +72,12 @@ ServiceBean.onApplicationEvent
 	                            -->ProtocolFilterWrapper.export
 	                              -->buildInvokerChain//创建8个filter
 	                              -->ProtocolListenerWrapper.export
----------1.netty服务暴露的开始-------    -->DubboProtocol.export
+---------1.netty服务暴露的开始----  -->DubboProtocol.export
 	                                  -->serviceKey(url)//组装key=com.alibaba.dubbo.demo.DemoService:20880
 	                                  -->目的：exporterMap.put(key, this)//key=com.alibaba.dubbo.demo.DemoService:20880, this=DubboExporter
 	                                  -->openServer(url)
 	                                    -->createServer(url)
---------2.信息交换层 exchanger 开始-------------->Exchangers.bind(url, requestHandler)//exchaanger是一个信息交换层
+--------2.信息交换层 exchanger 开始-----  -->Exchangers.bind(url, requestHandler)//exchaanger是一个信息交换层
 	                                        -->getExchanger(url)
 	                                          -->getExchanger(type)
 	                                            -->ExtensionLoader.getExtensionLoader(Exchanger.class).getExtension("header")
@@ -85,7 +86,7 @@ ServiceBean.onApplicationEvent
 	                                            -->new HeaderExchangeHandler(handler)//this.handler = handler
 	                                            -->new DecodeHandler
 	                                            	-->new AbstractChannelHandlerDelegate//this.handler = handler;
----------3.网络传输层 transporter--------------------->Transporters.bind
+---------3.网络传输层 transporter-------------  -->Transporters.bind
 	                                              -->getTransporter()
 	                                                -->ExtensionLoader.getExtensionLoader(Transporter.class).getAdaptiveExtension()
 	                                              -->Transporter$Adpative.bind
@@ -96,7 +97,7 @@ ServiceBean.onApplicationEvent
 	                                                      -->AbstractPeer //this.url = url;    this.handler = handler;
 	                                                      -->AbstractEndpoint//codec  timeout=1000  connectTimeout=3000
 	                                                      -->AbstractServer //bindAddress accepts=0 idleTimeout=600000
----------4.打开断开，暴露netty服务-------------------------------->doOpen()
+---------4.打开断开，暴露netty服务-------------------------->doOpen()
 	                                                        -->设置 NioServerSocketChannelFactory boss worker的线程池 线程个数为3
 	                                                        -->设置编解码 hander
 	                                                        -->bootstrap.bind(getBindAddress())
