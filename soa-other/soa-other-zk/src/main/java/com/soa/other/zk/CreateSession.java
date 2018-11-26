@@ -9,7 +9,7 @@ public class CreateSession {
 	
 	public static ZkClient connectZK(){
 		//zk集群的地址  
-        String ZKServers = "192.168.48.117:2181";  
+        String ZKServers = "127.0.0.1:2181";
       
         ZkClient zkClient = new ZkClient(ZKServers,10000,10000,new SerializableSerializer());  
         zkClient.subscribeStateChanges(new IZkStateListener() {
