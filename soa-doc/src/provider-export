@@ -22,7 +22,7 @@
 
 zk持久化节点 和临时节点有什么区别？
 持久化节点：一旦被创建，触发主动删除掉，否则就一直存储在ZK里面。
-临时节点：与客户端会话绑定，一旦客户端会话失效，这个客户端端所创建的所有临时节点都会被删除。
+临时节点：与客户端会话绑定，一旦客户端会话失效，这个客户端所创建的所有临时节点都会被删除。
 
 
 
@@ -113,14 +113,13 @@ ServiceBean.onApplicationEvent
 	                        -->extension.getRegistry(arg0)
 	                          -->AbstractRegistryFactory.getRegistry//创建一个注册中心，存储在REGISTRIES
 	                            -->createRegistry(url)
-	                              -->new ZookeeperRegistry(url, zookeeperTransporter)
-	                                -->AbstractRegistry
-	                                  -->loadProperties()//目的：把C:\Users\bobo\.dubbo\dubbo-registry-192.168.48.117.cache
-	                                                                                                                                                                    文件中的内容加载为properties
+	                              -->new ZookeeperRegistry(url, zookeeperTransporter)  //此处  ZookeeperRegistry 继承 FailbackRegistry 继承 AbstractRegistry
+	                                -->AbstractRegistry  // AbstractRegistry构造函数中的逻辑
+	                                  -->loadProperties()//目的：把C:\Users\bobo\.dubbo\dubbo-registry-192.168.48.117.cache 文件中的内容加载为properties
 	                                  -->notify(url.getBackupUrls())//不做任何事             
-	                                -->FailbackRegistry   
+	                                -->FailbackRegistry  // FailbackRegistry构造函数中的逻辑
 	                                  -->retryExecutor.scheduleWithFixedDelay(new Runnable()//建立线程池，检测并连接注册中心,如果失败了就重连
-	                                -->ZookeeperRegistry
+	                                -->ZookeeperRegistry // ZookeeperRegistry构造函数中的逻辑
 	                                  -->zookeeperTransporter.connect(url)
 	                                    -->ZookeeperTransporter$Adpative.connect(url)
 	                                      -->ExtensionLoader.getExtensionLoader(ZookeeperTransporter.class).getExtension("zkclient");
@@ -132,7 +131,7 @@ ServiceBean.onApplicationEvent
 	                                              -->new ZkClient(url.getBackupAddress());//连接ZK
 	                                              -->client.subscribeStateChanges(new IZkStateListener()//订阅的目标：连接断开，重连
 	                                    -->zkClient.addStateListener(new StateListener() 
-	                                      -->recover //连接失败 重连
+	                                      -->recover() //连接失败 重连
 	                                      
 	                    -->registry.register(registedProviderUrl)//创建节点
 	                      -->AbstractRegistry.register
@@ -140,7 +139,10 @@ ServiceBean.onApplicationEvent
 	                        -->doRegister(url)//向zk服务器端发送注册请求
 	                          -->ZookeeperRegistry.doRegister
 	                            -->zkClient.create
-	                              -->AbstractZookeeperClient.create//dubbo/com.alibaba.dubbo.demo.DemoService/providers/
+	                              -->AbstractZookeeperClient.create  // 此处递归调用create(),达到最后一层节点dubbo%3A%2F%2F192.168.100.52%3A20...为临时节点，
+	                                                                    其余/dubbo/com.alibaba.dubbo.demo.DemoService/providers/三个节点为持久节点的目的，
+	                                                                    服务下线后，最后一层节点dubbo%3A%2F...会从zk上移除
+	                                                                 //dubbo/com.alibaba.dubbo.demo.DemoService/providers/
 										                              dubbo%3A%2F%2F192.168.100.52%3A20880%2Fcom.alibaba.dubbo.demo.DemoService%3Fanyhost%3Dtrue%26
 										                              application%3Ddemo-provider%26dubbo%3D2.0.0%26generic%3Dfalse%26interface%3D
 										                              com.alibaba.dubbo.demo.DemoService%26loadbalance%3Droundrobin%26methods%3DsayHello%26owner%3
@@ -148,7 +150,7 @@ ServiceBean.onApplicationEvent
 	                                -->createEphemeral(path);//临时节点  dubbo%3A%2F%2F192.168.100.52%3A20880%2F.............
 	                                -->createPersistent(path);//持久化节点 dubbo/com.alibaba.dubbo.demo.DemoService/providers
 	                                    
-	                                    
+	                    -->getSubscribedOverrideUrl(registedProviderUrl) //将注册的provider的URL对象修改参数获取overrideSubscribeUrl
 	                    -->registry.subscribe//订阅ZK
 	                      -->AbstractRegistry.subscribe
 	                      -->FailbackRegistry.subscribe
@@ -184,26 +186,3 @@ ServiceBean.onApplicationEvent
 	                              -->RegistryProtocol.notify
 	                                -->RegistryProtocol.this.getProviderUrl(originInvoker)//通过invoker的url 获取 providerUrl的地址
 	                                                                                                        
-	                                                                                                                                                                    
-	                                    
-	                    
-
-
-	                                                
-	                                                      
-	                                                
-	                                           
-	                                        
-			                              
-	                            
-	                          
-          
-                        
-                        
-                    
-        
-
-
-
-
-
