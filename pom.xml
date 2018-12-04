@@ -15,7 +15,8 @@
 		<module>soa-common</module>
 		<module>soa-other</module>
 		<module>soa-doc</module>
-	</modules>
+        <module>rpcframework</module>
+    </modules>
 	<properties>
 		<!-- spring -->
 		<spring.version>4.2.0.RELEASE</spring.version>
